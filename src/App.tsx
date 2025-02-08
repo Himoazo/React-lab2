@@ -6,7 +6,7 @@ interface TodosInterface {
   id: number,
   todo_name: string,
   description: string,
-  status: string
+  status: number
 }
 
 
@@ -56,7 +56,7 @@ const getTodos = async () => {
       <div>
         {
           todos.map((todo) => (
-            <Todo todo={todo} key={todo.id}/>
+            <Todo todo={todo} key={todo.id} getTodos={ getTodos } />
           ))
         }
       </div>
