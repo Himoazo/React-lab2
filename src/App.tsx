@@ -1,5 +1,6 @@
 import './App.css'
 import { useState, useEffect } from 'react'
+import Todo from './components/Todo'
 
 interface TodosInterface {
   id: number,
@@ -55,11 +56,7 @@ const getTodos = async () => {
       <div>
         {
           todos.map((todo) => (
-            <div key={todo.id}>
-              <h2>{todo.todo_name}</h2>
-              <p>{todo.description}</p>
-              <span>{todo.status }</span>
-            </div>
+            <Todo todo={todo} key={todo.id}/>
           ))
         }
       </div>
