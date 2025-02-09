@@ -6,7 +6,7 @@ import { AppContext } from '../App'
 const TodoForm = () => {
   //States Todo creation & validation
     const [CreateTodoForm, setCreateTodoForm] = useState<TodosInterface>({todo_name: "", description: "", status: 0})
-    const [formErrors, setFormErrors] = useState<FormErros>()
+    const [formErrors, setFormErrors] = useState<FormErros>({})
   // Import getTodos from App.tsx using context
   const { getTodos } = useContext(AppContext);
   const validateForm = (event: any) => {
@@ -22,7 +22,8 @@ const TodoForm = () => {
       formValidation.description = "Beskrivning kan inte vara längre än 200 tecken";
     }
 
-    if (!CreateTodoForm.status || CreateTodoForm.status < 0 || CreateTodoForm.status > 3 || typeof CreateTodoForm.status !== "number") {
+    if (CreateTodoForm.status === undefined || CreateTodoForm.status === null || CreateTodoForm.status < 0
+      || CreateTodoForm.status > 2) {
       formValidation.status = "Status kan endast vara 'Ej påbörjad', 'Påbörjad' eller 'Avklarad'"
     }
 
@@ -45,14 +46,20 @@ const TodoForm = () => {
       });
     
     if (!response.ok) {
-      throw Error;
+      if (response.status === 422) {
+          throw "Denna todo finns redan";
+      } else if (response.status === 500) {
+        throw "Server fel, försök igen senare";
+      } else {
+        throw "Ett fel har inträffats, försök igen";
+        }
       } 
     
       getTodos();
       setCreateTodoForm({ todo_name: "", description: "", status: 0 });
-      
-    } catch (error) {
-      console.log(error);
+      setFormErrors({});
+    } catch (error: any) {
+      setFormErrors({ Error: error || "Ett fel har inträffats"});
     }  
   }
 
@@ -74,8 +81,9 @@ const TodoForm = () => {
           <option value="1">Påbörjad</option>
           <option value="2">Avklarad</option>
         </select>
-        {formErrors?.status && <span> {formErrors.status} </span> }
-
+        {formErrors?.status && <span> {formErrors.status} </span>}
+      
+        {formErrors?.Error && <span> {formErrors.Error} </span> }
       <button type="submit">Create Todo</button>
     </form>
   )
