@@ -1,13 +1,8 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import Todo from './components/Todo'
-
-interface TodosInterface {
-  id: number,
-  todo_name: string,
-  description: string,
-  status: number
-}
+import { TodosInterface } from './Interfaces/TodosInterface';
+import TodoForm from './components/TodoForm';
 
 
 
@@ -53,6 +48,7 @@ const getTodos = async () => {
       {
         loader && <p className=""> Hämtar todos...</p>
       }
+      <TodoForm />
       <div>
         {
           todos.map((todo) => (

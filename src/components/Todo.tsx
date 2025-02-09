@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Todo = ({ todo, getTodos }: { todo: any, getTodos: Function}) => {
   
   const changeStat = async (event: any) => {
