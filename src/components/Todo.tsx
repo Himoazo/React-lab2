@@ -4,6 +4,8 @@ import { useState } from "react";
 const Todo = ({ todo, getTodos }: { todo: TodosInterface, getTodos: Function }) => {
   //Error state
   const [error, setError] = useState<string | null>(null);
+
+  //Change Todo status
   const changeStat = async (event: any) => {
     const changedStat = { ...todo, status: Number(event.target.value) }
     
@@ -27,6 +29,7 @@ const Todo = ({ todo, getTodos }: { todo: TodosInterface, getTodos: Function }) 
     }
   }
 
+  //Delete Todo
   const deleteTodo = async (id?: number) => {
     try {
       const response = await fetch("http://localhost:3000/api/" + id, {

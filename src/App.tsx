@@ -7,14 +7,16 @@ import TodoForm from './components/TodoForm';
 export const AppContext = createContext({getTodos: ()=>{}});
 
 function App() {
-  // States
+  // States Get & Error & loading
   const [todos, setTodos] = useState<TodosInterface[] | []>([]);
   const [error, setError] = useState<string | null>(null);
   const [loader, setLoader] = useState<boolean>(false);
+
 useEffect(() => {
   getTodos();
 }, []);
 
+  //Get todos
 const getTodos = async () => {
   try {
     setLoader(true);

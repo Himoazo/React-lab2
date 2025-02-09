@@ -9,6 +9,8 @@ const TodoForm = () => {
     const [formErrors, setFormErrors] = useState<FormErros>({})
   // Import getTodos from App.tsx using context
   const { getTodos } = useContext(AppContext);
+
+  //Validation
   const validateForm = (event: any) => {
     event.preventDefault();
     
@@ -35,6 +37,7 @@ const TodoForm = () => {
     }
   }
   
+  //Create todo
   const createTodo = async () => {
     try {
       const response = await fetch("http://localhost:3000/api/", {
