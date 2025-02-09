@@ -1,4 +1,6 @@
-const Todo = ({ todo, getTodos }: { todo: any, getTodos: Function}) => {
+import { TodosInterface } from "../Interfaces/TodosInterface";
+
+const Todo = ({ todo, getTodos }: { todo: TodosInterface, getTodos: Function }) => {
   
   const changeStat = async (event: any) => {
     const changedStat = { ...todo, status: Number(event.target.value) }
@@ -22,13 +24,32 @@ const Todo = ({ todo, getTodos }: { todo: any, getTodos: Function}) => {
     }
   }
 
+  const deleteTodo = async (id?: number) => {
+    try {
+      const response = await fetch("http://localhost:3000/api/" + id, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw Error;
+        } 
+      
+        getTodos();
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <div>
       <h2>{todo.todo_name}</h2>
       <p>{todo.description}</p>
       <span>{todo.status === 0 ? "Ej påbörjad" : todo.status === 1 ? "Påbörkad"
         : todo.status === 2 ? "Avklarad" : "Ogilltig status"}</span>
-      
+      <button onClick={()=>{deleteTodo(todo.id)}}>Ta bort</button>
       <form>
         <label htmlFor="status">Uppdatera status</label>
         <select name="status" id="status" defaultValue={todo.status} onChange={changeStat}>
@@ -40,5 +61,6 @@ const Todo = ({ todo, getTodos }: { todo: any, getTodos: Function}) => {
     </div>
   )
 }
+
 
 export default Todo
