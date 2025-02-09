@@ -1,14 +1,15 @@
-import  { useState } from 'react'
+import  { useState, useContext} from 'react'
 import { TodosInterface } from '../Interfaces/TodosInterface'
 import { FormErros } from '../Interfaces/FormErrors'
-
+import { AppContext } from '../App'
 
 const TodoForm = () => {
   //States Todo creation & validation
     const [CreateTodoForm, setCreateTodoForm] = useState<TodosInterface>({todo_name: "", description: "", status: 0})
     const [formErrors, setFormErrors] = useState<FormErros>()
-
-  const createTodo = (event: any) => {
+  // Import getTodos from App.tsx using context
+  const { getTodos } = useContext(AppContext);
+  const validateForm = (event: any) => {
     event.preventDefault();
     
     const formValidation: FormErros = {};
@@ -29,10 +30,34 @@ const TodoForm = () => {
       setFormErrors(formValidation);
     } else {
       setFormErrors({});
+      createTodo();
     }
-    }
+  }
+  
+  const createTodo = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(CreateTodoForm)
+      });
+    
+    if (!response.ok) {
+      throw Error;
+      } 
+    
+      getTodos();
+      setCreateTodoForm({ todo_name: "", description: "", status: 0 });
+      
+    } catch (error) {
+      console.log(error);
+    }  
+  }
+
   return (
-    <form onSubmit={createTodo}>
+    <form onSubmit={validateForm}>
       <label htmlFor='todo_name'>Todo: </label> 
           <input type="text" name="todo_name" id='todo_name' value={CreateTodoForm.todo_name}
              onChange={(event)=> setCreateTodoForm({...CreateTodoForm, todo_name: event.target.value})}  minLength={3} maxLength={30} />

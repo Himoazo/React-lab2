@@ -1,10 +1,10 @@
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect , createContext} from 'react'
 import Todo from './components/Todo'
 import { TodosInterface } from './Interfaces/TodosInterface';
 import TodoForm from './components/TodoForm';
 
-
+export const AppContext = createContext({getTodos: ()=>{}});
 
 function App() {
   // States
@@ -48,7 +48,10 @@ const getTodos = async () => {
       {
         loader && <p className=""> Hämtar todos...</p>
       }
-      <TodoForm />
+      <AppContext.Provider value={{getTodos}}>
+        <TodoForm />
+      </AppContext.Provider>
+      
       <div>
         {
           todos.map((todo) => (
