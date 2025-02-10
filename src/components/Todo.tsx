@@ -11,7 +11,7 @@ const Todo = ({ todo, getTodos }: { todo: TodosInterface, getTodos: Function }) 
     const changedStat = { ...todo, status: Number(event.target.value) }
     
     try {
-      const response = await fetch("http://localhost:3000/api/" + todo.id, {
+      const response = await fetch("https://react-api-express5.up.railway.app/api/" + todo.id, {
         method: "PUT",
         headers: {
           "Content-type": "application/json"
@@ -33,7 +33,7 @@ const Todo = ({ todo, getTodos }: { todo: TodosInterface, getTodos: Function }) 
   //Delete Todo
   const deleteTodo = async (id?: number) => {
     try {
-      const response = await fetch("http://localhost:3000/api/" + id, {
+      const response = await fetch("https://react-api-express5.up.railway.app/api/" + id, {
         method: "DELETE",
         headers: {
           "Content-type": "application/json"

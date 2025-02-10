@@ -41,7 +41,7 @@ const TodoForm = () => {
   //Create todo
   const createTodo = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/", {
+      const response = await fetch("https://react-api-express5.up.railway.app/api/", {
         method: "POST",
         headers: {
           "Content-type": "application/json"

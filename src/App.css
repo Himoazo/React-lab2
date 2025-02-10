@@ -21,6 +21,24 @@ main{
     border-radius: 4px;
     border: 1px solid #f5c6cb;
   } 
+        
+#errDiv{
+  width: 25%;
+  margin: 0 auto;
+}
+
+  .loader{
+    width: 25%;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
 @media screen and (max-width: 768px){
     .todoGrid{

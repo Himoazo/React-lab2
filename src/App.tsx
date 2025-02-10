@@ -23,7 +23,7 @@ const getTodos = async () => {
   try {
     setLoader(true);
 
-    const response = await fetch("http://localhost:3000/api/");
+    const response = await fetch("https://react-api-express5.up.railway.app/api/");
     
     if (!response.ok) {
       throw Error;
@@ -46,11 +46,15 @@ const getTodos = async () => {
     <Header />
     <main>
       {
-        error && <p className='errorMsg'>{error}</p>
+        error && <div id='errDiv'><p className='errorMsg'>{error}</p></div>
       }
 
       {
-        loader && <p className=""> Hämtar todos...</p>
+        loader && <p className="loader"> Hämtar todos...</p>
+      }
+      
+      {
+        todos.length === 0 ? <p className="loader"> Det finns inga todos att visa.</p> : null
       }
       <AppContext.Provider value={{getTodos}}>
         <TodoForm />
@@ -58,9 +62,8 @@ const getTodos = async () => {
       
       <div className='todoGrid'>
         {
-          todos.map((todo) => (
-            <Todo todo={todo} key={todo.id} getTodos={ getTodos } />
-          ))
+            todos.map((todo) =>
+              (<Todo todo={todo} key={todo.id} getTodos={getTodos} />))
         }
       </div>
       </main>
