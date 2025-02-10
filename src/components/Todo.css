@@ -1,0 +1,78 @@
+ .Todos {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: auto;
+  width: 250px;
+  text-align: center;
+}
+
+.Todos h2 {
+  color: #333;
+  min-height: 60px;
+  margin: 1vh auto;
+  font-size: 1.5rem;
+}
+
+.Todos .description {
+  min-height: 150px;
+  color: #666;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.Todos .status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #f0f0f0;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.Todos .updateStatus {
+  margin: 16px 0;
+}
+
+.Todos .updateStatus label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+}
+
+.Todos .updateStatus select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.Todos .updateStatus select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.Todos .delBtn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.Todos .delBtn:hover {
+  background-color: #c82333;
+}
+

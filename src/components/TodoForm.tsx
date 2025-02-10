@@ -2,6 +2,7 @@ import  { useState, useContext} from 'react'
 import { TodosInterface } from '../Interfaces/TodosInterface'
 import { FormErros } from '../Interfaces/FormErrors'
 import { AppContext } from '../App'
+import './TodoForm.css'
 
 const TodoForm = () => {
   //States Todo creation & validation
@@ -67,26 +68,26 @@ const TodoForm = () => {
   }
 
   return (
-    <form onSubmit={validateForm}>
+    <form className='createTodo' onSubmit={validateForm}>
       <label htmlFor='todo_name'>Todo: </label> 
           <input type="text" name="todo_name" id='todo_name' value={CreateTodoForm.todo_name}
              onChange={(event)=> setCreateTodoForm({...CreateTodoForm, todo_name: event.target.value})}  minLength={3} maxLength={30} />
-        {formErrors?.todo_name && <span> {formErrors.todo_name} </span> }
+        {formErrors?.todo_name && <span className='errorMsg'> {formErrors.todo_name} </span> }
 
       <label htmlFor='description'>Beskrivning: </label>
           <textarea typeof='text' name="description" id='description' value={CreateTodoForm.description}
              onChange={(event)=> setCreateTodoForm({...CreateTodoForm, description: event.target.value})} /* maxLength={200} */ />
-        {formErrors?.description && <span> {formErrors.description} </span> }
+        {formErrors?.description && <span className='errorMsg'> {formErrors.description} </span> }
 
-      <label htmlFor='status'>Status</label>
+      <label htmlFor='status'>Status: </label>
         <select name="status" id='status' value={CreateTodoForm.status} onChange={(event)=> setCreateTodoForm({...CreateTodoForm, status: Number(event.target.value)})} >
           <option value="0">Ej påbörjad</option>
           <option value="1">Påbörjad</option>
           <option value="2">Avklarad</option>
         </select>
-        {formErrors?.status && <span> {formErrors.status} </span>}
+        {formErrors?.status && <span className='errorMsg'> {formErrors.status} </span>}
       
-        {formErrors?.Error && <span> {formErrors.Error} </span> }
+        {formErrors?.Error && <span className='errorMsg'> {formErrors.Error} </span> }
       <button type="submit">Create Todo</button>
     </form>
   )

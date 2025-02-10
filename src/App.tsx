@@ -3,6 +3,8 @@ import { useState, useEffect , createContext} from 'react'
 import Todo from './components/Todo'
 import { TodosInterface } from './Interfaces/TodosInterface';
 import TodoForm from './components/TodoForm';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export const AppContext = createContext({getTodos: ()=>{}});
 
@@ -40,9 +42,9 @@ const getTodos = async () => {
 }
 
   return (
+    <>
+    <Header />
     <main>
-      <h1>Todo list</h1>
-
       {
         error && <p className='errorMsg'>{error}</p>
       }
@@ -54,14 +56,16 @@ const getTodos = async () => {
         <TodoForm />
       </AppContext.Provider>
       
-      <div>
+      <div className='todoGrid'>
         {
           todos.map((todo) => (
             <Todo todo={todo} key={todo.id} getTodos={ getTodos } />
           ))
         }
       </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   )
 }
 

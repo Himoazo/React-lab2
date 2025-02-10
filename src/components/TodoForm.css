@@ -1,0 +1,69 @@
+.createTodo {
+    max-width: 600px;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+  }
+  
+  .createTodo label {
+    display: block;
+    margin: 16px 0 8px;
+    color: #333;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .createTodo input[type="text"],
+  .createTodo textarea,
+  .createTodo select {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s
+  }
+  
+  .createTodo textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .createTodo input[type="text"]:focus,
+  .createTodo textarea:focus,
+  .createTodo select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  }
+  
+  .createTodo select {
+    cursor: pointer;
+  }
+  
+  .createTodo button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 24px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .createTodo button[type="submit"]:hover {
+    background-color: #357abd;
+  }
+  
+  
